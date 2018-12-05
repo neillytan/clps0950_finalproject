@@ -1,1 +1,52 @@
 
+cell_columns = size(original,2)*3
+cell_rows = size(originial,1)
+response_cell = cell(cell_columns,cell_rows);
+
+%initialize empty variables for responses
+first_response=[];
+second_response=[];
+third_response=[];
+%code to display First
+%first_response is a variable created by user input
+
+if (first_response >= 1 && first_response <= 4) || first_response == 6
+    %code to display Second (1-7)
+    %second_response is a variable created by user input
+    second_response >= 1 && second_response <= 7
+    if (first_response == 1 || first_response == 2 || first_response == 6) 
+        if (second_response == 1 || second_response == 3 ||...
+            second_response == 5 || second_response == 7)
+        (third_response >= 1 && third_response <= 9);
+        elseif second_response == 2 || second_response == 6
+        third_response = 0;
+        elseif second_response == 4
+        (third_response >= 1 && third_response <= 9);
+        end
+       %code to display ThirdA
+    elseif (first_response == 3 || first_response == 4) && ...
+            (second_response >= 1 && second_response <= 7)
+        (third_response >= 1 && third_response <= 3)
+    end
+           %display to user an error message
+end
+        
+        
+        %code to send you to the next sentence
+  
+        %code to display ThirdC
+  
+     
+    
+
+    %code to display Second (1-7)
+      
+            %display error
+        
+
+    %display to user an error message
+
+
+code = (first_response*100) + (second_response*10) + (third_response); 
+
+
