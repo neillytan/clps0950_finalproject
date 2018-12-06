@@ -1,4 +1,22 @@
 function response_cell = FexCode(original)
+sca;
+close all;
+clear all;
+Screen('Preference', 'SkipSyncTests', 1);
+PsychDefaultSetup(2);
+screenNumber = max(Screen('Screens'));
+white = WhiteIndex(screenNumber);
+grey = white / 2;
+black = BlackIndex(screenNumber);
+[window, windowRect] = PsychImaging('OpenWindow', screenNumber, white, [], 32, 2);
+[screenXpixels, screenYpixels] = Screen('WindowSize', window);
+ifi = Screen('GetFlipInterval', window);
+rr = FrameRate(window);
+Screen('TextSize', window, 40);
+isiTimeSecs = 1;
+isiTimeFrames = round(isiTimeSecs / ifi);
+waitframes = 1;
+
 %initialize key codes for responses
 zero=KbName('0'); %might not need this
 one=KbName('1');
