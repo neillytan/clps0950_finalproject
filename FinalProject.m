@@ -1,4 +1,5 @@
 function response_cell = FexCode(original)
+%initializing boilerplate
 sca;
 close all;
 clear all;
