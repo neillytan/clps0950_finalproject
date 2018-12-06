@@ -46,6 +46,10 @@ isiTimeSecs = 1;
 isiTimeFrames = round(isiTimeSecs / ifi);
 waitframes = 1;
 
+%displaying instructions
+DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n There are five major categories of F.Ex. codes and they are as followed: \n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
+Screen('Flip', window);
+KbStrokeWait;
 %Loop to go through the original matrix sentence by sentence
 for ii=size(original,2)
     for jj=size(original,1)
@@ -55,6 +59,13 @@ second_response=[];
 third_response=[];
 %% First digit
 %code to display First Digit Choice & the appropriate sentence
+Screen('TextSize', window, 50);
+DrawFormattedText(window, char(this_sentence), 'center', 'center', black);
+[vbl stim flip Missed beampos] = Screen('Flip', window);   
+Screen('TextSize', window, 20);
+DrawFormattedText(window, 'Choosing the first digit:\n\n Below are some instructions for choosing the first digits. \n 1: If the behavior was unintentional, it is probably a CAUSE EXPLANATION \n 2: If the intention of the behavior is explained, but the content of the explanation was NOT consciously considered by the agent, it is probably a CAUSAL HISTORY EXPLANATION \n 3: If the intention of the behavior is explained, and was a marked desire, belief, or valuing of the agent, it is probably a marked REASON EXPLANATION \n 4: If the intention of the behavior is explained, and was an unmarked desire, belief, or valuing of the agent, it is probably an unmarked REASON EXPLANATION \n 6: If the intention of the behavior is not explained, but rather answers the question “how is this possible?” then it is probably an ENABLING FACTOR EXPLANATION the word says. \n Please press the corresponding key to your decision','center', 'center', black);
+Screen('Flip', window);
+KbStrokeWait;
 hasAnswered = false;
 %This chunk requires a correct answer to continue
     while ~hasAnswered
@@ -78,6 +89,10 @@ hasAnswered = false;
 
 %% Second Digit
 %code to display Second (1-7)
+DrawFormattedText(window, char(this_sentence), 'center', 'center', black);
+DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 'center', black);
+Screen('Flip', window);
+KbStrokeWait;
 hasAnswered = false;
 %This chunk requires a correct answer to continue
     while ~hasAnswered
@@ -123,6 +138,10 @@ hasAnswered = false;
         if (second_response == 1 || second_response == 3 ||...
             second_response == 5 || second_response == 7)
         %% code to display ThirdA (agent cause 3rd digits 1-9)
+            DrawFormattedText(window, char(this_sentence), 'center', 'center', black);
+            DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: cause is the agent’s behavior \n 2: cause is the agent’s internal state (emotion, bodily states)\n 3: cause is the agent’s perceptions (attention, imagination, etc.)\n 4: cause is the agent’s desires, beliefs, thoughts\n 5: cause is the agent’s traits (personality, chronic illness, etc.)\n 6: cause is the agent’s passive behaviors (receiving, becoming, dying)\n 7: cause is the agent’s habitual beliefs, desires, attitudes\n 8: cause is the agent’s category membership (clubs, social category, age cohort, etc.)\n 9: cause is the agent’s beliefs, desires, and attitudes that are a part of their character \n Please press the corresponding key to your decision','center', 'center', black);
+            Screen('Flip', window);
+            KbStrokeWait;
             hasAnswered = false;
             %This chunk requires a correct answer to continue
                 while ~hasAnswered
@@ -188,6 +207,10 @@ hasAnswered = false;
         third_response = 0;
         elseif second_response == 4
         %% code to display ThirdB (other person cause 3rd digits 1-9)
+            DrawFormattedText(window, char(this_sentence), 'center', 'center', black);
+            DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: cause is the agent’s behavior \n 2: cause is the other person’s internal state (emotion, bodily states) \n 3: cause is the other person’s perceptions (attention, imagination, etc.) \n 4: cause is the other person’s desires, beliefs, thoughts \n 5: cause is the other person’s traits (personality, chronic illness, etc.)\n 6: cause is the other person’s passive behaviors (receiving, becoming, dying)\n 7: cause is the other person’s habitual desires, beliefs, thoughts \n 8: cause is the other person’s category membership (clubs, social category, age cohort, etc.)\n 9: cause is the other person’s character desires, beliefs, thoughts \n Please press the corresponding key to your decision','center', 'center', black);
+            Screen('Flip', window);
+            KbStrokeWait;
             hasAnswered = false;
                 %This chunk requires a correct answer to continue
                     while ~hasAnswered
@@ -252,6 +275,10 @@ hasAnswered = false;
         end
     elseif (first_response == 3 || first_response == 4)
         %% code to display ThirdC (Reason Explanation 3rd digits 1-3)
+        DrawFormattedText(window, char(this_sentence), 'center', 'center');
+        DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: Desires: mental states that can be fulfilled \n 2: Beliefs: events that may or may not exist but that the agent presumes to be factual. \n 3: Valuing:  appreciations, attitudes, likings. \n Please press the corresponding key to your decision','center', 'center', black);
+        Screen('Flip', window);
+        KbStrokeWait;
         hasAnswered = false;
             %This chunk requires a correct answer to continue
                 while ~hasAnswered
@@ -315,8 +342,14 @@ hasAnswered = false;
                 WaitSecs(.5)
     end
 %code to ask you to confirm your choice
-%code asking you to enter any comments
 code = (first_response*100) + (second_response*10) + (third_response);
+DrawFormattedText(window, 'Your code for this explanation is ','center', 'center', black);
+DrawFormattedText(window, char(code), 'center', 'center', black);
+DrawFormattedText(window, 'Please press the spacebar to confirm your choice', 'center', 'center', black);
+Screen('Flip', window);
+KbStrokeWait;
+%code asking you to enter any comments
+
 %writes the code into the appropriate column in the same row as before
 response_cell(jj, 3*(ii-1)+2 )=code;
 response_cell(jj,3*(ii-1)+3)=comment;
