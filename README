@@ -1,3 +1,4 @@
 Here's our CLPS0950 final project! Remember to comment when you've updated your code :) 
-Some notes: Second represents the display of the second digit options (1-7, consistent regardless of first digit)
+Some notes: First represents the display of the first digit options (1 2 3 4  or 6)
+Second represents the display of the second digit options (1-7, consistent regardless of first digit)
 ThirdA, ThirdB, ThirdC, represent the third digit options (depends on what the second digit is) 
