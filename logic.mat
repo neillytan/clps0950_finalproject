@@ -1,4 +1,4 @@
-
+%initialize the response cell matrix
 cell_columns = size(original,2)*3
 cell_rows = size(originial,1)
 response_cell = cell(cell_columns,cell_rows);
