@@ -1,0 +1,4 @@
+%I created a sample matrix of FEx codes to test our program with. 
+%Imagine a question like "why did she leave work to go to a dance party?". 
+%This matrix has responses from 3 participants, participants 1 and 3 gave 2 responses while participant 2 just gave one. 
+fex_mat= {'because she was tired' 'because her brother told her to' 'because she was raised that way'; 'in order to show everybody that she could' '' 'she just liked to dance'}
