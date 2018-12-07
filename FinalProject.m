@@ -350,6 +350,43 @@ Screen('Flip', window);
 KbStrokeWait;
 %code asking you to enter any comments
 
+Screen('FrameRect',window, black, [300 300 700 500],4);    
+msg = ['Your comments: '];
+
+maxNumChar = 20;
+vLineSpacing = 1;
+string = '';
+while true
+    if 0
+        char = GetKbChar(varargin{:});
+    else
+        char = GetChar;
+    end
+    if isempty(char)
+        string = '';
+        break;
+    end
+    switch (abs(char))
+        case {13, 3, 10}
+            
+            break;
+        case 8
+            
+            if ~isempty(string)
+               
+                string = string(1:length(string)-1);
+            end
+        otherwise
+            string = [string, char];
+    end
+
+    comment = [msg, ' ', string];
+    comment2 = WrapString(comment,maxNumChar);
+    Screen('FrameRect',window, black, [300 300 700 500],4);
+    DrawFormattedText(window,comment2,320,320,0,[],0,0,vLineSpacing);
+    DrawFormattedText(window, 'Please press "Enter" to proceed', 300, 530, black);
+    Screen('Flip',window);
+end
 %writes the code into the appropriate column in the same row as before
 response_cell(jj, 3*(ii-1)+2 )=code;
 response_cell(jj,3*(ii-1)+3)=comment;
