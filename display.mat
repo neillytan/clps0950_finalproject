@@ -38,8 +38,11 @@ code_array = [];
 % Display flowchart
 % Adjust flowchart into position underneath center
 
-flowXpos = 0.5 * screenXpixels - 75;
+flowXpos = (0.5 * screenXpixels) - 75;
 flowYpos = (0.5 * screenYpixels) - 50; 
+
+prevXpos = 0.75 * screenXpixels;
+prevYpos = 50; 
 
 Screen('FrameRect', window, 0, bbox);
 DrawFormattedText(window, 'Sentence here.', 'center', 'center', black);
@@ -50,6 +53,11 @@ Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
 Screen( 'Flip' , window)
 KbStrokeWait;
 sca;
+
+% Add rectangle at upper right displaying the previous key presses
+Screen('FrameRect', window, 0, bbox);
+DrawFormattedText(window, 'Your previous codes: ', 'prevXpos', 'prevYpos');
+
     
 ifi = Screen( 'GetFlipInterval' , window);
 numFrames = length(code_array);
