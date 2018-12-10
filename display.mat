@@ -1,3 +1,6 @@
+%--------------------------------------------------------------------------
+% PsyToolBox Setup
+%--------------------------------------------------------------------------
 
 sca;
 close all;
@@ -14,10 +17,6 @@ black = BlackIndex(screenNumber);
 
 
 flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
-
-D = dir(folder);
-D( 1 : 2 ) = [];
-order = randperm(4);
 
 %--------------------------------------------------------------------------
 % Keyboard Stuff
