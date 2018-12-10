@@ -394,3 +394,6 @@ response_cell(jj,3*(ii-1)+3)=comment;
     end
     end
 end
+%creates a csv file
+temp_table = cell2table(response_cell, 'VariableNames',{'Preparsed_Sentence' 'Code' 'Comments'});
+writetable(temp_table,'Final.csv')
