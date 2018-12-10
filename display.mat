@@ -1,1 +1,85 @@
 
+sca;
+close all;
+PsychDefaultSetup( 2 );
+Screen( 'Preference' , 'SkipSyncTests' , 1 );
+
+
+screens = Screen('Screens');
+screenNumber = max(screens);
+black = BlackIndex(screenNumber);
+
+[window, windowRect] = PsychImaging('OpenWindow', screenNumber, black);
+[screenXpixels, screenYpixels] = Screen( 'WindowSize' , window);
+
+
+flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
+
+D = dir(folder);
+D( 1 : 2 ) = [];
+order = randperm(4);
+
+%--------------------------------------------------------------------------
+% Keyboard Stuff
+%--------------------------------------------------------------------------
+
+one = KbName( '1' );
+two = KbName( '2' );
+three = KbName( '3' );
+four = KbName( '4' );
+quit = KbName( 'x' );
+resp_key = [];
+code_array = [];
+%fill this in later with .csv
+
+%--------------------------------------------------------------------------
+% Slides
+%--------------------------------------------------------------------------
+
+% Display flowchart
+
+Screen('FrameRect', window, 0, bbox);
+imageTexture = Screen( 'MakeTexture' , window, flowchart);
+Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
+Screen( 'Flip' , window)
+KbStrokeWait;
+sca;
+    
+ifi = Screen( 'GetFlipInterval' , window);
+numFrames = length(code_array);
+presTime = numFrames*ifi;
+    
+hasAnswered = false;
+
+while ~hasAnswered
+   [keyIsDown,secs, keyCode] = KbCheck;
+    if keyIsDown
+       if keyCode(one)
+          ShowCursor;
+          %code to fill in 
+          sca;
+          return
+       elseif keyCode(two)
+          ShowCursor;
+          %code to fill in 
+          sca;
+          return            
+       elseif keyCode(three)
+          ShowCursor;
+          %code to fill in 
+          sca;
+          return
+       elseif keyCode(four)
+          ShowCursor;
+          %code to fill in 
+          sca;
+          return
+        end
+    end
+end
+    
+    
+blank_time = WaitSecs( .5 );
+
+
+
