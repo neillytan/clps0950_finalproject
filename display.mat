@@ -56,7 +56,7 @@ sca;
 
 % Add rectangle at upper right displaying the previous key presses
 Screen('FrameRect', window, 0, bbox);
-DrawFormattedText(window, 'Your previous codes: ', 'prevXpos', 'prevYpos');
+DrawFormattedText(window, 'Your previous codes: ', 'prevXpos', 'prevYpos',  black);
 
     
 ifi = Screen( 'GetFlipInterval' , window);
