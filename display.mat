@@ -15,7 +15,6 @@ black = BlackIndex(screenNumber);
 [window, windowRect] = PsychImaging('OpenWindow', screenNumber, black);
 [screenXpixels, screenYpixels] = Screen( 'WindowSize' , window);
 
-
 flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
 
 %--------------------------------------------------------------------------
@@ -29,16 +28,24 @@ four = KbName( '4' );
 quit = KbName( 'x' );
 resp_key = [];
 code_array = [];
-%fill this in later with .csv
+%fill this in later with .csv info
+
 
 %--------------------------------------------------------------------------
 % Slides
 %--------------------------------------------------------------------------
 
 % Display flowchart
+% Adjust flowchart into position underneath center
+
+flowXpos = 0.5 * screenXpixels - 75;
+flowYpos = (0.5 * screenYpixels) - 50; 
 
 Screen('FrameRect', window, 0, bbox);
-imageTexture = Screen( 'MakeTexture' , window, flowchart);
+DrawFormattedText(window, 'Sentence here.', 'center', 'center', black);
+
+Screen('FrameRect', window, 0, bbox);
+imageTexture = Screen( 'MakeTexture' , window, flowchart, 'flowXpos', 'flowYpos');
 Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
 Screen( 'Flip' , window)
 KbStrokeWait;
@@ -55,24 +62,20 @@ while ~hasAnswered
     if keyIsDown
        if keyCode(one)
           ShowCursor;
-          %code to fill in 
-          sca;
-          return
+          %code to fill in
+          %% add getChar()
        elseif keyCode(two)
           ShowCursor;
-          %code to fill in 
-          sca;
-          return            
+          %code to fill in            
        elseif keyCode(three)
           ShowCursor;
           %code to fill in 
-          sca;
-          return
        elseif keyCode(four)
           ShowCursor;
-          %code to fill in 
+       elseif keycode(quit)
+          ShowCursor;
           sca;
-          return
+          return      
         end
     end
 end
