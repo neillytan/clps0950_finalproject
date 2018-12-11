@@ -55,7 +55,7 @@ prevXpos = 0.75 * screenXpixels;
 prevYpos = 50; 
 
 %displaying instructions
-DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n There are five major categories of F.Ex. codes and they are as followed: \n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
+DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n\n\n There are five major categories of F.Ex. codes and they are as followed: \n\n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
 Screen('Flip', window);
 KbStrokeWait;
 %Loop to go through the original matrix sentence by sentence
