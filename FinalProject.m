@@ -12,7 +12,6 @@ eight=KbName('8*');
 nine=KbName('9(');
 quit=KbName('x'); %quitting key
 cont=KbName('space'); %continue key
-goback=KbName('a'); %'go back' key
 
 %initialize the response cell matrix
 cell_columns = size(original,2)*3;
@@ -48,19 +47,19 @@ DrawFormattedText(window, 'This program will assist coders to code explanations 
 Screen('Flip', window);
 %This chunk requires a spacebar to continue
 hasAnswered = false;
-   while ~hasAnswered
-        [keyIsDown,secs, keyCode] = KbCheck;
-        if keyIsDown
-            if keyCode(quit)
-                ShowCursor;
-                sca;
-                return
-            elseif keyCode(cont)
-                hasAnswered=true;
-                continue
-            end
+while ~hasAnswered
+    [keyIsDown,secs, keyCode] = KbCheck;
+    if keyIsDown
+        if keyCode(quit)
+            ShowCursor;
+            sca;
+            return
+        elseif keyCode(cont)
+            hasAnswered=true;
+            continue
         end
-   end
+    end
+end
 WaitSecs(0.5)
 %Loop to go through the original matrix sentence by sentence
 for ii= 1:size(original,2)
@@ -104,30 +103,30 @@ for ii= 1:size(original,2)
         %% Second Digit
         %code to display Second (1-7)
         if (first_response==1 || first_response==2 || first_response==3 || first_response==4 || first_response==6)
-        Screen('TextSize', window, 50);
-        DrawFormattedText(window, this_sentence, 'center', 200, black);
-        Screen('TextSize', window, 20);
-        DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 300, black);
-        Screen('Flip', window);
-        hasAnswered = false;
-        %This chunk requires a correct answer to continue
-        while ~hasAnswered
-            [keyIsDown,secs, keyCode] = KbCheck;
-            if keyIsDown
-                if keyCode(quit)
-                    ShowCursor;
-                    sca;
-                    return
-                    %requires a 1,2,3,4,5,6, or 7
-                elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(five)||keyCode(six)||keyCode(seven)
-                    hasAnswered = true;
-                    %records the response into second_response
-                    the_key= KbName(keyCode);
-                    second_response= str2double(the_key(1));
+            Screen('TextSize', window, 50);
+            DrawFormattedText(window, this_sentence, 'center', 200, black);
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 300, black);
+            Screen('Flip', window);
+            hasAnswered = false;
+            %This chunk requires a correct answer to continue
+            while ~hasAnswered
+                [keyIsDown,secs, keyCode] = KbCheck;
+                if keyIsDown
+                    if keyCode(quit)
+                        ShowCursor;
+                        sca;
+                        return
+                        %requires a 1,2,3,4,5,6, or 7
+                    elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(five)||keyCode(six)||keyCode(seven)
+                        hasAnswered = true;
+                        %records the response into second_response
+                        the_key= KbName(keyCode);
+                        second_response= str2double(the_key(1));
+                    end
                 end
             end
-        end
-        WaitSecs(.5)
+            WaitSecs(.5)
         end
         %% Third Digit
         if (first_response == 1 || first_response == 2 || first_response == 6)
@@ -183,62 +182,19 @@ for ii= 1:size(original,2)
                             %records the response into third_response
                             the_key= KbName(keyCode);
                             third_response= str2double(the_key(1));
-                        elseif keyCode(goback)
-                            %code to display Second Digit Choice AGAIN (1-7)
-                            hasAnswered = false;
-                            %This chunk requires a correct answer to continue
-                            while ~hasAnswered
-                                [keyIsDown,secs, keyCode] = KbCheck;
-                                if keyIsDown
-                                    if keyCode(quit)
-                                        ShowCursor;
-                                        sca;
-                                        return
-                                        %requires a 1,2,3,4,5,6, or 7
-                                    elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(five)||keyCode(six)||keyCode(seven)
-                                        hasAnswered = true;
-                                        %records the response into second_response
-                                        the_key= KbName(keyCode);
-                                        second_response= str2double(the_key(1));
-                                        continue
-                                    elseif keyCode(goback)
-                                        %code to display First Digit Choice AGAIN & the appropriate sentence
-                                        hasAnswered = false;
-                                        %This chunk requires a correct answer to continue
-                                        while ~hasAnswered
-                                            [keyIsDown,secs, keyCode] = KbCheck;
-                                            if keyIsDown
-                                                if keyCode(quit)
-                                                    ShowCursor;
-                                                    sca;
-                                                    return
-                                                    %requires a 1,2,3,4, or 6,
-                                                elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(six)
-                                                    hasAnswered = true;
-                                                    %records the response into first_response
-                                                    the_key= KbName(keyCode);
-                                                    first_response= str2double(the_key(1));
-                                                    continue
-                                                end
-                                            end
-                                        end
-                                        WaitSecs(.5)
-                                    end
-                                end
-                            end
-                            WaitSecs(.5)
                         end
                     end
+                    WaitSecs(.5)
                 end
-                WaitSecs(.5)
             end
+            WaitSecs(.5)
         elseif (first_response == 3 || first_response == 4)
             %% code to display ThirdC (Reason Explanation 3rd digits 1-3)
-               Screen('TextSize', window, 50);
-                DrawFormattedText(window, this_sentence, 'center', 200, black);
-                Screen('TextSize', window, 20);
-                DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: Desires: mental states that can be fulfilled \n 2: Beliefs: events that may or may not exist but that the agent presumes to be factual. \n 3: Valuing:  appreciations, attitudes, likings. \n Please press the corresponding key to your decision','center', 300, black);                Screen('Flip', window);
-                hasAnswered = false;
+            Screen('TextSize', window, 50);
+            DrawFormattedText(window, this_sentence, 'center', 200, black);
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: Desires: mental states that can be fulfilled \n 2: Beliefs: events that may or may not exist but that the agent presumes to be factual. \n 3: Valuing:  appreciations, attitudes, likings. \n Please press the corresponding key to your decision','center', 300, black);                Screen('Flip', window);
+            hasAnswered = false;
             %This chunk requires a correct answer to continue
             while ~hasAnswered
                 [keyIsDown,secs, keyCode] = KbCheck;
@@ -254,50 +210,7 @@ for ii= 1:size(original,2)
                         the_key= KbName(keyCode);
                         third_response= str2double(the_key(1));
                         continue
-                    elseif keyCode(goback)
-                        %code to display Second Digit Choice AGAIN (1-7)
-                        hasAnswered = false;
-                        %This chunk requires a correct answer to continue
-                        while ~hasAnswered
-                            [keyIsDown,secs, keyCode] = KbCheck;
-                            if keyIsDown
-                                if keyCode(quit)
-                                    ShowCursor;
-                                    sca;
-                                    return
-                                    %requires a 1,2,3,4,5,6, or 7
-                                elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(five)||keyCode(six)||keyCode(seven)
-                                    hasAnswered = true;
-                                    %records the response into second_response
-                                    the_key= KbName(keyCode);
-                                    second_response= str2double(the_key(1));
-                                    continue
-                                elseif keyCode(goback)
-                                    %code to display First Digit Choice AGAIN & the appropriate sentence
-                                    hasAnswered = false;
-                                    %This chunk requires a correct answer to continue
-                                    while ~hasAnswered
-                                        [keyIsDown,secs, keyCode] = KbCheck;
-                                        if keyIsDown
-                                            if keyCode(quit)
-                                                ShowCursor;
-                                                sca;
-                                                return
-                                                %requires a 1,2,3,4, or 6,
-                                            elseif keyCode(one)||keyCode(two)|| keyCode(three)||keyCode(four)||keyCode(six)
-                                                hasAnswered = true;
-                                                %records the response into first_response
-                                                the_key= KbName(keyCode);
-                                                first_response= str2double(the_key(1));
-                                                continue
-                                            end
-                                        end
-                                    end
-                                    WaitSecs(.5)
-                                end
-                            end
-                        end
-                        WaitSecs(.5)
+                        
                     end
                 end
             end
@@ -327,54 +240,54 @@ for ii= 1:size(original,2)
                 end
             end
         end
-WaitSecs(0.5)
+        WaitSecs(0.5)
         %code asking you to enter any comments
         % base code from https://stackoverflow.com/questions/41693336/how-to-make-participant-input-appear-on-screen-and-be-wrapped-psychtoolbox
-%         
-%         Screen('FrameRect',window, black, [300 300 700 500],4);
-%         msg = ['Your comments: '];
-%         
-%         maxNumChar = 20;
-%         vLineSpacing = 1;
-%         string = '';
-%         while true
-%             if 0
-%                 char = GetKbChar(varargin{:});
-%             else
-%                 char = GetChar;
-%             end
-%             if isempty(char)
-%                 string = '';
-%                 break;
-%             end
-%             switch (abs(char))
-%                 case {13, 3, 10}
-%                     
-%                     break;
-%                 case 8
-%                     
-%                     if ~isempty(string)
-%                         
-%                         string = string(1:length(string)-1);
-%                         ends
-%                 otherwise
-%                     string = [string, char];
-%             end
-%             
-%             comment = [msg, ' ', string];
-%             comment2 = WrapString(comment,maxNumChar);
-%             Screen('FrameRect',window, black, [300 300 700 500],4);
-%             DrawFormattedText(window,comment2,320,320,0,[],0,0,vLineSpacing);
-%             DrawFormattedText(window, 'Please press "Enter" to proceed', 300, 530, black);
-%             Screen('Flip',window);
-%         end
-%         %writes the code into the appropriate column in the same row as before
-%         end
+        %
+        %         Screen('FrameRect',window, black, [300 300 700 500],4);
+        %         msg = ['Your comments: '];
+        %
+        %         maxNumChar = 20;
+        %         vLineSpacing = 1;
+        %         string = '';
+        %         while true
+        %             if 0
+        %                 char = GetKbChar(varargin{:});
+        %             else
+        %                 char = GetChar;
+        %             end
+        %             if isempty(char)
+        %                 string = '';
+        %                 break;
+        %             end
+        %             switch (abs(char))
+        %                 case {13, 3, 10}
+        %
+        %                     break;
+        %                 case 8
+        %
+        %                     if ~isempty(string)
+        %
+        %                         string = string(1:length(string)-1);
+        %                         ends
+        %                 otherwise
+        %                     string = [string, char];
+        %             end
+        %
+        %             comment = [msg, ' ', string];
+        %             comment2 = WrapString(comment,maxNumChar);
+        %             Screen('FrameRect',window, black, [300 300 700 500],4);
+        %             DrawFormattedText(window,comment2,320,320,0,[],0,0,vLineSpacing);
+        %             DrawFormattedText(window, 'Please press "Enter" to proceed', 300, 530, black);
+        %             Screen('Flip',window);
+        %         end
+        %         %writes the code into the appropriate column in the same row as before
+        %         end
         response_cell{jj, 3*(ii-1)+2 }=code;
         %response_cell(jj,3*(ii-1)+3)=comment;
     end
 end
 
 %creates a csv file
- temp_table = cell2table(response_cell, 'VariableNames',{'Preparsed_Sentence' 'Code' 'Comments'});
+temp_table = cell2table(response_cell, 'VariableNames',{'Preparsed_Sentence' 'Code' 'Comments'});
 writetable(temp_table,'Final.csv')
