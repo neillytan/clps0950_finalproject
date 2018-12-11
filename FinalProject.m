@@ -2,15 +2,15 @@ function response_cell = FexCode(original)
 
 %initialize key codes for responses
 zero=KbName('0'); %might not need this
-one=KbName('1');
-two=KbName('2');
-three=KbName('3');
-four=KbName('4');
-five=KbName('5');
-six=KbName('6');
-seven=KbName('7');
-eight=KbName('8');
-nine=KbName('9');
+one=KbName('1!');
+two=KbName('2@');
+three=KbName('3#');
+four=KbName('4$');
+five=KbName('5%');
+six=KbName('6^');
+seven=KbName('7&');
+eight=KbName('8*');
+nine=KbName('9(');
 quit=KbName('x'); %quitting key
 cont=KbName('space'); %continue key
 goback=KbName('a'); %'go back' key
