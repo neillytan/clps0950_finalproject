@@ -60,6 +60,8 @@ for ii=size(original,2)
 first_response=[];
 second_response=[];
 third_response=[];
+
+
 %% First digit
 %code to display First Digit Choice & the appropriate sentence
 Screen('TextSize', window, 50);
@@ -67,6 +69,9 @@ DrawFormattedText(window, char(this_sentence), 'center', 'center', black);
 [vbl stim flip Missed beampos] = Screen('Flip', window);   
 Screen('TextSize', window, 20);
 DrawFormattedText(window, 'Choosing the first digit:\n\n Below are some instructions for choosing the first digits. \n 1: If the behavior was unintentional, it is probably a CAUSE EXPLANATION \n 2: If the intention of the behavior is explained, but the content of the explanation was NOT consciously considered by the agent, it is probably a CAUSAL HISTORY EXPLANATION \n 3: If the intention of the behavior is explained, and was a marked desire, belief, or valuing of the agent, it is probably a marked REASON EXPLANATION \n 4: If the intention of the behavior is explained, and was an unmarked desire, belief, or valuing of the agent, it is probably an unmarked REASON EXPLANATION \n 6: If the intention of the behavior is not explained, but rather answers the question “how is this possible?” then it is probably an ENABLING FACTOR EXPLANATION the word says. \n Please press the corresponding key to your decision','center', 'center', black);
+imageTexture = Screen( 'MakeTexture' , window, flowchart, 'flowXpos', 'flowYpos');
+Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
+
 Screen('Flip', window);
 KbStrokeWait;
 hasAnswered = false;
@@ -89,6 +94,7 @@ hasAnswered = false;
     end
     WaitSecs(.5)
 %first_response is a variable created by user input
+
 
 %% Second Digit
 %code to display Second (1-7)
