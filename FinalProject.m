@@ -48,6 +48,11 @@ waitframes = 1;
 
 %Import flowchart
 flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
+% Adjust flowchart into position underneath center
+flowXpos = (0.5 * screenXpixels) - 75;
+flowYpos = (0.5 * screenYpixels) - 50; 
+prevXpos = 0.75 * screenXpixels;
+prevYpos = 50; 
 
 %displaying instructions
 DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n There are five major categories of F.Ex. codes and they are as followed: \n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
@@ -142,6 +147,9 @@ hasAnswered = false;
         end
     end
     WaitSecs(.5)
+
+
+
   %% Third Digit  
     if (first_response == 1 || first_response == 2 || first_response == 6) 
         if (second_response == 1 || second_response == 3 ||...
