@@ -16,8 +16,8 @@ cont=KbName('space'); %continue key
 goback=KbName('a'); %'go back' key
 
 %initialize the response cell matrix
-cell_columns = size(original,2)*3;
-cell_rows = size(original,1);
+cell_columns = 1:size(original,2)*3;
+cell_rows = 1:size(original,1);
 response_cell = cell(cell_rows, cell_columns);
 %input the original data into the response cell matrix
 for n= 1:size(original,2)
