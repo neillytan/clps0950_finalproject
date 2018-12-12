@@ -13,6 +13,9 @@ nine=KbName('9(');
 quit=KbName('x'); %quitting key
 cont=KbName('space'); %continue key
 
+%import flowchart image
+flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
+
 %initialize the response cell matrix
 cell_columns = size(original,2)*3;
 cell_rows = size(original,1);
@@ -41,6 +44,10 @@ Screen('TextSize', window, 20);
 isiTimeSecs = 1;
 isiTimeFrames = round(isiTimeSecs / ifi);
 waitframes = 1;
+
+% Adjust flowchart into position underneath center
+flowXpos = (0.5 * screenXpixels) - 75;
+flowYpos = (0.5 * screenYpixels) - 50; 
 
 %displaying instructions
 DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n There are five major categories of F.Ex. codes and they are as follows: \n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
@@ -76,6 +83,10 @@ for ii= 1:size(original,2)
         DrawFormattedText(window, this_sentence, 'center', 200, black);
         Screen('TextSize', window, 20);
         DrawFormattedText(window, 'Choosing the first digit:\n\n Below are some instructions for choosing the first digits. \n\n 1: If the behavior was unintentional, it is probably a CAUSE EXPLANATION \n\n 2: If the intention of the behavior is explained, but the content of the explanation\n was NOT consciously considered by the agent, it is probably a CAUSAL HISTORY EXPLANATION \n\n 3: If the intention of the behavior is explained, and was a marked desire,\n belief, or valuing of the agent, it is probably a marked REASON EXPLANATION \n\n 4: If the intention of the behavior is explained, and was an unmarked desire, belief,\n or valuing of the agent, it is probably an unmarked REASON EXPLANATION \n\n 6: If the intention of the behavior is not explained, but rather answers the question \n''how is this possible?'' then it is probably an ENABLING FACTOR EXPLANATION \n\n 0: if this is uncodeable press zero \n\n Please press the corresponding key to your decision','center', 300, black);
+        Screen('FrameRect', window, 0, bbox);
+        %put in flowchart image
+        imageTexture = Screen( 'MakeTexture' , window, flowchart, 'flowXpos', 'flowYpos');
+        Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
         Screen('Flip', window);
         hasAnswered = false;
         %This chunk requires a correct answer to continue
