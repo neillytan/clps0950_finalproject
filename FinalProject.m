@@ -256,7 +256,7 @@ for ii= 1:size(original,2)
             end
         end
         WaitSecs(0.5)
-        %code asking you to enter any comments
+               %code asking you to enter any comments
         % base code from https://stackoverflow.com/questions/41693336/how-to-make-participant-input-appear-on-screen-and-be-wrapped-psychtoolbox
         %
         %         Screen('FrameRect',window, black, [300 300 700 500],4);
