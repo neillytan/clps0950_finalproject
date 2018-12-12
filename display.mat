@@ -120,7 +120,7 @@ for ii= 1:size(original,2)
             Screen('FrameRect', window, 0, bbox);
             DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
             Screen('TextSize', window, 20);
-            DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 300, black);
+            DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','justifytomax', 40, 0, [], [], [], [], [], [50 40 100 100]);
             Screen('Flip', window);
             hasAnswered = false;
             %This chunk requires a correct answer to continue
