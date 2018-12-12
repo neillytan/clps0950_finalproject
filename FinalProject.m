@@ -302,6 +302,8 @@ for ii= 1:size(original,2)
         %response_cell(jj,3*(ii-1)+3)=comment;
     end
 end
+ShowCursor;
+sca;
 
 %creates a csv file
 fid = fopen('finalData.csv', 'w');
