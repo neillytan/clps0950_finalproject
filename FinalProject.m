@@ -1,6 +1,6 @@
 function response_cell = FexCode(original)
 %initialize key codes for responses
-zero=KbName('0)'); 
+zero=KbName('0)');
 one=KbName('1!');
 two=KbName('2@');
 three=KbName('3#');
@@ -256,50 +256,50 @@ for ii= 1:size(original,2)
             end
         end
         WaitSecs(0.5)
-               %code asking you to enter any comments
+        %code asking you to enter any comments
         % base code from https://stackoverflow.com/questions/41693336/how-to-make-participant-input-appear-on-screen-and-be-wrapped-psychtoolbox
         %
-        %         Screen('FrameRect',window, black, [300 300 700 500],4);
-        %         msg = ['Your comments: '];
-        %
-        %         maxNumChar = 20;
-        %         vLineSpacing = 1;
-        %         string = '';
-        %         while true
-        %             if 0
-        %                 char = GetKbChar(varargin{:});
-        %             else
-        %                 char = GetChar;
-        %             end
-        %             if isempty(char)
-        %                 string = '';
-        %                 break;
-        %             end
-        %             switch (abs(char))
-        %                 case {13, 3, 10}
-        %
-        %                     break;
-        %                 case 8
-        %
-        %                     if ~isempty(string)
-        %
-        %                         string = string(1:length(string)-1);
-        %                         ends
-        %                 otherwise
-        %                     string = [string, char];
-        %             end
-        %
-        %             comment = [msg, ' ', string];
-        %             comment2 = WrapString(comment,maxNumChar);
-        %             Screen('FrameRect',window, black, [300 300 700 500],4);
-        %             DrawFormattedText(window,comment2,320,320,0,[],0,0,vLineSpacing);
-        %             DrawFormattedText(window, 'Please press "Enter" to proceed', 300, 530, black);
-        %             Screen('Flip',window);
-        %         end
-        %         %writes the code into the appropriate column in the same row as before
-        %         end
+        Screen('FrameRect',window, black, [300 300 700 500],4);
+        msg = ['Your comments: '];
+        
+        maxNumChar = 20;
+        vLineSpacing = 1;
+        string = '';
+        while true
+            if 0
+                char = GetKbChar(varargin{:});
+            else
+                char = GetChar;
+            end
+            if isempty(char)
+                string = '';
+                break;
+            end
+            switch (abs(char))
+                case {13, 3, 10}
+                    
+                    break;
+                case 8
+                    
+                    if ~isempty(string)
+                        
+                        string = string(1:length(string)-1);
+                    end
+                otherwise
+                    string = [string, char];
+            end
+            
+            comment = [msg, ' ', string];
+            comment2 = WrapString(comment,maxNumChar);
+            Screen('FrameRect',window, black, [300 300 700 500],4);
+            DrawFormattedText(window,comment2,320,320,0,[],0,0,vLineSpacing);
+            DrawFormattedText(window, 'Please press "Enter" to proceed', 300, 530, black);
+            Screen('Flip',window);
+        end
+        %writes the code into the appropriate column in the same row as before
+        response_cell(jj,3*(ii-1)+3)=comment;
         response_cell{jj, 3*(ii-1)+2 }=code;
-        %response_cell(jj,3*(ii-1)+3)=comment;
+        
     end
 end
 ShowCursor;
@@ -329,4 +329,5 @@ for jj = 1:size(response_cell,1)
     end
     fprintf(fid, '\n');
 end
-         fclose(fid);  
+fclose(fid);
+end
