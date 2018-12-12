@@ -289,5 +289,27 @@ for ii= 1:size(original,2)
 end
 
 %creates a csv file
-temp_table = cell2table(response_cell, 'VariableNames',{'Preparsed_Sentence' 'Code' 'Comments'});
-writetable(temp_table,'Final.csv')
+fid = fopen('finalData.csv', 'w');
+for i = 1:size(response_cell,2)/3
+    fprintf(fid,'Preparsed_Sentence;Code;Comments');
+    if i~=size(response_cell,2)/3
+        fprintf(fid, ';');
+    end
+end
+fprintf(fid, '\n')
+for jj = 1:size(response_cell,1)
+    for ii= 1:size(response_cell,2)
+        if mod(ii,3)== 1
+            fprintf(fid,'%s;',response_cell{jj,ii});
+        elseif mod(ii,3)== 2
+            fprintf(fid,'%d;',response_cell{jj,ii});
+        elseif mod(ii,3)== 0
+            fprintf(fid,'%s',response_cell{jj,ii});
+            if ii~=size(response_cell,2)
+                fprintf(fid, ';');
+            end
+        end
+    end
+    fprintf(fid, '\n');
+end
+         fclose(fid);  
