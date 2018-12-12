@@ -1,6 +1,6 @@
 function response_cell = FexCode(original)
 %initialize key codes for responses
-zero=KbName('0)'); %might not need this
+zero=KbName('0)'); 
 one=KbName('1!');
 two=KbName('2@');
 three=KbName('3#');
@@ -12,9 +12,6 @@ eight=KbName('8*');
 nine=KbName('9(');
 quit=KbName('x'); %quitting key
 cont=KbName('space'); %continue key
-
-%import flowchart image
-flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
 
 %initialize the response cell matrix
 cell_columns = size(original,2)*3;
@@ -45,10 +42,6 @@ isiTimeSecs = 1;
 isiTimeFrames = round(isiTimeSecs / ifi);
 waitframes = 1;
 
-% Adjust flowchart into position underneath center
-flowXpos = (0.5 * screenXpixels) - 75;
-flowYpos = (0.5 * screenYpixels) - 50; 
-
 %displaying instructions
 DrawFormattedText(window, 'This program will assist coders to code explanations of behavior using the F.Ex. coding scheme (Malle, 1997, 2004, 2011) \n There are five major categories of F.Ex. codes and they are as follows: \n 1 - Cause Explanations\n 2 - Causal History of Reason\n 3 - Reason Explanations (marked)\n 4 - Reason Explanations (unmarked)\n 6 - Enabling Factor Explanations\n\n If you are ready, press the ''SPACEBAR'' to continue.','center', 'center', black);
 Screen('Flip', window);
@@ -71,6 +64,8 @@ WaitSecs(0.5)
 %Loop to go through the original matrix sentence by sentence
 for ii= 1:size(original,2)
     for jj= 1:size(original,1)
+        %initialize "code"
+        code=[];
         %this_sentence
         this_sentence=original{jj,ii};
         %initialize empty variables for responses
@@ -80,15 +75,9 @@ for ii= 1:size(original,2)
         %% First digit
         %code to display First Digit Choice & the appropriate sentence
         Screen('TextSize', window, 50);
-        %add a bounding box - border around this_sentence
-        Screen('FrameRect', window, 0, bbox);
-        DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
+        DrawFormattedText(window, this_sentence, 'center', 200, black);
         Screen('TextSize', window, 20);
         DrawFormattedText(window, 'Choosing the first digit:\n\n Below are some instructions for choosing the first digits. \n\n 1: If the behavior was unintentional, it is probably a CAUSE EXPLANATION \n\n 2: If the intention of the behavior is explained, but the content of the explanation\n was NOT consciously considered by the agent, it is probably a CAUSAL HISTORY EXPLANATION \n\n 3: If the intention of the behavior is explained, and was a marked desire,\n belief, or valuing of the agent, it is probably a marked REASON EXPLANATION \n\n 4: If the intention of the behavior is explained, and was an unmarked desire, belief,\n or valuing of the agent, it is probably an unmarked REASON EXPLANATION \n\n 6: If the intention of the behavior is not explained, but rather answers the question \n''how is this possible?'' then it is probably an ENABLING FACTOR EXPLANATION \n\n 0: if this is uncodeable press zero \n\n Please press the corresponding key to your decision','center', 300, black);
-        Screen('FrameRect', window, 0, bbox);
-        %put in flowchart image
-        imageTexture = Screen( 'MakeTexture' , window, flowchart, 'flowXpos', 'flowYpos');
-        Screen( 'DrawTexture' , window, imageTexture, [], [], 0 );
         Screen('Flip', window);
         hasAnswered = false;
         %This chunk requires a correct answer to continue
@@ -107,6 +96,9 @@ for ii= 1:size(original,2)
                     first_response= str2double(the_key(1));
                 elseif keyCode(zero)
                     hasAnswered=true;
+                    the_key= KbName(keyCode);
+                    first_response= str2double(the_key(1));
+                    code=0;
                 end
             end
         end
@@ -117,10 +109,9 @@ for ii= 1:size(original,2)
         %code to display Second (1-7)
         if (first_response==1 || first_response==2 || first_response==3 || first_response==4 || first_response==6)
             Screen('TextSize', window, 50);
-            Screen('FrameRect', window, 0, bbox);
-            DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
+            DrawFormattedText(window, this_sentence, 'center', 200, black);
             Screen('TextSize', window, 20);
-            DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person’s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 300, black);
+            DrawFormattedText(window, 'Choosing the second digit: \n\n Below are some instructions for choosing the second digits.\n\n 1: agent cause: the cause operates within the agent themselves\n 2: situation cause: the cause is outside of the agent and impersonal\n 3: agent + situation: interaction \n 4: other person cause: the cause is outside of the agent but is another person?s states or attributes\n 5: agent + other person: interaction \n 6: situation + other person: interaction \n 7: agent + situation + other person: the cause is an interaction between the agent, another person, and the situation\n Please press the corresponding key to your decision','center', 300, black);
             Screen('Flip', window);
             hasAnswered = false;
             %This chunk requires a correct answer to continue
@@ -148,8 +139,7 @@ for ii= 1:size(original,2)
                     second_response == 5 || second_response == 7)
                 %% code to display ThirdA (agent cause 3rd digits 1-9)
                 Screen('TextSize', window, 50);
-                Screen('FrameRect', window, 0, bbox);
-                DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
+                DrawFormattedText(window, this_sentence, 'center', 200, black);
                 Screen('TextSize', window, 20);
                 DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: cause is the agent''s behavior \n 2: cause is the agent''s internal state (emotion, bodily states)\n 3: cause is the agent''s perceptions (attention, imagination, etc.)\n 4: cause is the agent''s desires, beliefs, thoughts\n 5: cause is the agent''s traits (personality, chronic illness, etc.)\n 6: cause is the agent''s passive behaviors (receiving, becoming, dying)\n 7: cause is the agent''s habitual beliefs, desires, attitudes\n 8: cause is the agent''s category membership (clubs, social category, age cohort, etc.)\n 9: cause is the agent''s beliefs, desires, and attitudes that are a part of their character \n Please press the corresponding key to your decision','center', 300, black);
                 Screen('Flip', window);
@@ -178,8 +168,7 @@ for ii= 1:size(original,2)
             elseif second_response == 4
                 %% code to display ThirdB (other person cause 3rd digits 1-9)
                 Screen('TextSize', window, 50);
-                Screen('FrameRect', window, 0, bbox);
-                DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
+                DrawFormattedText(window, this_sentence, 'center', 200, black);
                 Screen('TextSize', window, 20);
                 DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: cause is the other person''s behavior \n 2: cause is the other person''s internal state (emotion, bodily states)\n 3: cause is the other person''s perceptions (attention, imagination, etc.)\n 4: cause is the other person''s desires, beliefs, thoughts\n 5: cause is the other person''s traits (personality, chronic illness, etc.)\n 6: cause is the other person''s passive behaviors (receiving, becoming, dying)\n 7: cause is the other person''s habitual beliefs, desires, attitudes\n 8: cause is the other person''s category membership (clubs, social category, age cohort, etc.)\n 9: cause is the other person''s beliefs, desires, and attitudes that are a part of their character \n Please press the corresponding key to your decision','center', 300, black);
                 Screen('Flip', window);
@@ -207,8 +196,7 @@ for ii= 1:size(original,2)
         elseif (first_response == 3 || first_response == 4)
             %% code to display ThirdC (Reason Explanation 3rd digits 1-3)
             Screen('TextSize', window, 50);
-            Screen('FrameRect', window, 0, bbox);
-            DrawFormattedText(window, this_sentence, bbox(RectLeft), 'center', 200, black);
+            DrawFormattedText(window, this_sentence, 'center', 200, black);
             Screen('TextSize', window, 20);
             DrawFormattedText(window, 'Choosing the third digit: \n\n Below are some instructions for choosing the third digits.\n 1: Desires: mental states that can be fulfilled \n 2: Beliefs: events that may or may not exist but that the agent presumes to be factual. \n 3: Valuing:  appreciations, attitudes, likings. \n Please press the corresponding key to your decision','center', 300, black);                Screen('Flip', window);
             hasAnswered = false;
@@ -234,14 +222,24 @@ for ii= 1:size(original,2)
             WaitSecs(.5)
         end
         %code to ask you to confirm your choice
-        code = (first_response*100) + (second_response*10) + (third_response);
-        Screen('TextSize', window, 20);
-        DrawFormattedText(window, 'Your code for this explanation is ','center', 100, black);
-        Screen('TextSize', window, 50);
-        DrawFormattedText(window, num2str(code), 'center', 200, black);
-        Screen('TextSize', window, 20);
-        DrawFormattedText(window, 'Please press the spacebar to confirm your choice', 'center', 400, black);
-        Screen('Flip', window);
+        if code == 0
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Your code for this explanation is ','center', 100, black);
+            Screen('TextSize', window, 50);
+            DrawFormattedText(window, '0', 'center', 200, black);
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Please press the spacebar to confirm your choice', 'center', 400, black);
+            Screen('Flip', window);
+        else
+            code = (first_response*100) + (second_response*10) + (third_response);
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Your code for this explanation is ','center', 100, black);
+            Screen('TextSize', window, 50);
+            DrawFormattedText(window, num2str(code), 'center', 200, black);
+            Screen('TextSize', window, 20);
+            DrawFormattedText(window, 'Please press the spacebar to confirm your choice', 'center', 400, black);
+            Screen('Flip', window);
+        end
         %This chunk requires a spacebar to continue
         hasAnswered = false;
         while ~hasAnswered
