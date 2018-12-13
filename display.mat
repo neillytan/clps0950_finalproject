@@ -1,5 +1,6 @@
 % -- Combines image rescaling and formatted text -- %
 % used http://psychtoolbox.org/docs/DrawFormattedText and http://peterscarfe.com/scaledimagedemo.html for help
+% wrapping doesnt work because in docs the 'wrapat' parameter is considered "experimental" and "even then it might work badly"  lolol rip
 
 % Clear the workspace and the screen
 sca;
