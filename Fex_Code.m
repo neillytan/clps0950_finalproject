@@ -11,8 +11,9 @@ function response_cell = Fex_Code(original)
 % building the response_cell matrix, and utilizing KbChecks, loops, and if
 % statements to control the flow of the program
 
-% Neilly wrote various codes for the display (creating a box around the sentence, etc) 
-% but the code was not working in time for submission so we could not incorporate it into our final product
+% Neilly wrote various codes for the display (image display, formatting text, creating a box around the sentence, etc) 
+% To see the display, consult the combined_image.mat file -- it is not incorporated in here as you would need to change filepath to where
+% flowchart is stored in your own directory.
 
 %We all worked together on integrating these elements and debugging
 
