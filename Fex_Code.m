@@ -340,7 +340,7 @@ end
 ShowCursor;
 sca;
 ListenChar(0);
-end
+
 %creates a csv file 
 fid = fopen('finalData.csv', 'w');
 for i = 1:size(response_cell,2)/3
