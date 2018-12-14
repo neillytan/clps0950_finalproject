@@ -1,3 +1,7 @@
+% -- Combines image rescaling and formatted text -- %
+% used http://psychtoolbox.org/docs/DrawFormattedText and http://peterscarfe.com/scaledimagedemo.html for help
+% neilly wrote
+
 function response_cell = FexCode(original)
 %initialize key codes for responses
 zero=KbName('0)');
