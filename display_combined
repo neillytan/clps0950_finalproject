@@ -109,7 +109,7 @@ for ii= 1:size(original,2)
         Screen('TextSize', window, 50);
         DrawFormattedText(window, this_sentence, 'center', 200, black);
         Screen('TextSize', window, 16);
-        DrawFormattedText(window, first_digit_text,300,(screenYpixels*0.5), 0);
+        DrawFormattedText(window, first_digit_text,300,'center', 0);
         Screen('DrawTextures', window, imageTexture, [], dstRects);
         Screen('Flip', window);
         hasAnswered = false;
@@ -144,7 +144,7 @@ for ii= 1:size(original,2)
             Screen('TextSize', window, 50);
             DrawFormattedText(window, this_sentence, 'center', 200, black);
             Screen('TextSize', window, 16);
-            DrawFormattedText(window, second_digit_text,300,(screenYpixels*0.5), 0);
+            DrawFormattedText(window, second_digit_text,300,'center', 0);
             Screen('DrawTextures', window, imageTexture, [], dstRects);
             Screen('Flip', window);
             hasAnswered = false;
@@ -175,7 +175,7 @@ for ii= 1:size(original,2)
                 Screen('TextSize', window, 50);
                 DrawFormattedText(window, this_sentence, 'center', 200, black);
                 Screen('TextSize', window, 20);
-                DrawFormattedText(window, third_digit_text,300,(screenYpixels*0.5), 0);
+                DrawFormattedText(window, third_digit_text,300,'center', 0);
                 Screen('DrawTextures', window, imageTexture, [], dstRects);
                 Screen('Flip', window);
                 hasAnswered = false;
@@ -205,7 +205,7 @@ for ii= 1:size(original,2)
                 Screen('TextSize', window, 50);
                 DrawFormattedText(window, this_sentence, 'center', 200, black);
                 Screen('TextSize', window, 16);
-                DrawFormattedText(window, third_digit_text,300,(screenYpixels*0.5), 0);
+                DrawFormattedText(window, third_digit_text,300,'center', 0);
                 Screen('DrawTextures', window, imageTexture, [], dstRects);
                 Screen('Flip', window);
                 hasAnswered = false;
@@ -234,7 +234,7 @@ for ii= 1:size(original,2)
             Screen('TextSize', window, 50);
             DrawFormattedText(window, this_sentence, 'center', 200, black);
             Screen('TextSize', window, 16);
-            DrawFormattedText(window, third_digit_text,300,(screenYpixels*0.5), 0);   
+            DrawFormattedText(window, third_digit_text,300,'center', 0);   
             Screen('DrawTextures', window, imageTexture, [], dstRects);
             Screen('Flip', window);
             hasAnswered = false;
