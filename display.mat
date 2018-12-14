@@ -1,6 +1,5 @@
 % -- Combines image rescaling and formatted text -- %
 % used http://psychtoolbox.org/docs/DrawFormattedText and http://peterscarfe.com/scaledimagedemo.html for help
-% wrapping doesnt work because in docs the 'wrapat' parameter is considered "experimental" and "even then it might work badly"  lolol rip
 
 % Clear the workspace and the screen
 sca;
@@ -38,6 +37,7 @@ image_flowchart = imread('/Users/ntan/Documents/MATLAB/Flowchart.png');
 
 %specify text
 mytext = '\n\n Choosing the first digit:\n\n Below are some instructions for choosing the first digits. \n\n 1: If the behavior was unintentional, it is probably a CAUSE EXPLANATION \n\n 2: If the intention of the behavior is explained, but the content of the explanation\n was NOT consciously considered by the agent, it is probably a CAUSAL HISTORY EXPLANATION \n\n 3: If the intention of the behavior is explained, and was a marked desire,\n belief, or valuing of the agent, it is probably a marked REASON EXPLANATION \n\n 4: If the intention of the behavior is explained, and was an unmarked desire, belief,\n or valuing of the agent, it is probably an unmarked REASON EXPLANATION \n\n 6: If the intention of the behavior is not explained, but rather answers the question \n''how is this possible?'' then it is probably an ENABLING FACTOR EXPLANATION \n\n 0: if this is uncodeable press zero \n\n Please press the corresponding key to your decision\n\n';
+my_text=WrapString(my_text,[60]);
 
 % Make the image into a texture
 imageTexture = Screen('MakeTexture', window, image_flowchart);
